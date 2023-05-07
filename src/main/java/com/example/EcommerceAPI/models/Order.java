@@ -1,6 +1,7 @@
 package com.example.EcommerceAPI.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,8 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer orderId;
+
+    @NotBlank(message = "productQuantity Required")
     private Integer productQuantity;
 
 
