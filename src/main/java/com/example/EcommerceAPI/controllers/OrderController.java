@@ -20,7 +20,18 @@ public class OrderController {
                              @RequestParam("productId") Integer productId,
                              @RequestParam("addressId") Integer addressId,
                              @RequestParam("productQuantity") Integer productQuantity) {
-        return orderService.createOrder(userId, productId, addressId, productQuantity);
+        String response;
+        HttpStatus status;
+        try{
+            orderService.createOrder(userId, productId, addressId, productQuantity);
+            response=" your order is placed successfully!!!!";
+            status=HttpStatus.CREATED;
+        }
+        catch (Exception e){
+            status=HttpStatus.BAD_REQUEST;
+            response =" invalid order details!!!";
+        }
+        return new ResponseEntity<String>(response,status);
     }
 
     @GetMapping("/{orderId}")
